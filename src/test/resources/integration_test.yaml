@@ -1,0 +1,32 @@
+---
+services:
+  aws.greengrass.Nucleus:
+    configuration:
+      runWithDefault:
+        posixUser: nobody
+  Integration:
+    configuration:
+      accessControl:
+        aws.greengrass.ipc.pubsub:
+          SubscribeAndPublish.pubsub:
+            policyDescription: access to pubsub topics for ServiceName
+            operations:
+              - '*'
+            resources:
+              - '*'
+      Modbus:
+        Endpoints:
+        - Host: "localhost"
+          Port: 5020
+          Timeout: 5
+          Devices:
+          - Name: "test"
+            UnitId: 0
+    dependencies:
+      - "aws.greengrass.Nucleus:SOFT"
+    lifecycle: {}
+    version: "1.0.0"
+  main:
+    dependencies:
+      - "Integration"
+    lifecycle: {}

@@ -1,0 +1,32 @@
+---
+RecipeFormatVersion: "2020-01-25"
+ComponentName: "aws.greengrass.labs.ModbusTCP"
+ComponentVersion: "1.0.0"
+ComponentType: "aws.greengrass.generic"
+ComponentDescription: "Modbus TCP protocol adapter"
+ComponentPublisher: "Amazon"
+ComponentConfiguration:
+  DefaultConfiguration:
+    Modbus:
+      Endpoints:
+      - Host: "localhost"
+        Port: 5020
+        Devices:
+        - Name: "test"
+          UnitId: 0
+    accessControl:
+      aws.greengrass.ipc.pubsub:
+        com.example.Modbus:pubsub:1:
+          policyDescription: "Allows publish/subscribe to all topics."
+          operations:
+          - "aws.greengrass#PublishToTopic"
+          - "aws.greengrass#SubscribeToTopic"
+          resources:
+          - "*"
+Manifests:
+- Name: Linux
+  Platform:
+    os: linux
+  Lifecycle:
+    Run: |-
+        java -jar {artifacts:path}/ModbusTCP-1.0.jar

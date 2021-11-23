@@ -1,0 +1,24 @@
+---
+services:
+  aws.greengrass.Nucleus:
+    configuration:
+      runWithDefault:
+        posixUser: nobody
+  SubscribeAndPublish:
+    configuration:
+      accessControl:
+        aws.greengrass.ipc.pubsub:
+          SubscribeAndPublish.pubsub:
+            policyDescription: access to pubsub topics for ServiceName
+            operations:
+              - '*'
+            resources:
+              - '*'
+    dependencies:
+      - "aws.greengrass.Nucleus:SOFT"
+    lifecycle: {}
+    version: "1.0.0"
+  main:
+    dependencies:
+      - "SubscribeAndPublish"
+    lifecycle: {}
