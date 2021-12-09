@@ -4,6 +4,7 @@ services:
     configuration:
       runWithDefault:
         posixUser: nobody
+      awsRegion: "us-east-1"
   Integration:
     configuration:
       accessControl:
