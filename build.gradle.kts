@@ -6,8 +6,8 @@ plugins {
     application
 }
 
-group = "com.amazon.iot.greengrass"
-version = "1.0"
+group = "aws.greengrass.labs.modbustcp"
+version = "1.0.0"
 
 repositories {
     mavenCentral()

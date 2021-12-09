@@ -29,4 +29,4 @@ Manifests:
     os: linux
   Lifecycle:
     Run: |-
-        java -jar {artifacts:path}/ModbusTCP-1.0.jar
+        java -jar {artifacts:path}/ModbusTCP-1.0.0.jar
