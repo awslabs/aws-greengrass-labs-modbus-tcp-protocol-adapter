@@ -9,24 +9,35 @@ ComponentConfiguration:
   DefaultConfiguration:
     Modbus:
       Endpoints:
-      - Host: "localhost"
-        Port: 5020
-        Devices:
-        - Name: "test"
-          UnitId: 0
+        - Host: <MODBUS_TCP_HOST>
+          Port: 502
+          Devices:
+            - Name: "test"
+              UnitId: 0
     accessControl:
       aws.greengrass.ipc.pubsub:
-        com.example.Modbus:pubsub:1:
-          policyDescription: "Allows publish/subscribe to all topics."
+        "aws.greengrass.labs.ModbusTCP:pubsub:1":
+          policyDescription: "Allows publish to request topic."
           operations:
-          - "aws.greengrass#PublishToTopic"
-          - "aws.greengrass#SubscribeToTopic"
+            - "aws.greengrass#PublishToTopic"
           resources:
-          - "*"
+            - "modbus/request/test"
+        "aws.greengrass.labs.ModbusTCP:pubsub:2":
+          policyDescription: "Allows subscribe to response topic."
+          operations:
+            - "aws.greengrass#SubscribeToTopic"
+          resources:
+            - "modbus/response/test"
 Manifests:
-- Name: Linux
-  Platform:
-    os: linux
-  Lifecycle:
-    Run: |-
+  - Name: UNIX
+    Platform:
+      os: /linux|darwin/
+    Lifecycle:
+      Run: |-
         java -jar {artifacts:path}/ModbusTCP-1.0.0.jar
+  - Name: Windows
+    Platform:
+      os: windows
+    Lifecycle:
+      Run: |-
+        java -jar {artifacts:path}\ModbusTCP-1.0.0.jar
