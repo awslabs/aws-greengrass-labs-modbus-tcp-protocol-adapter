@@ -4,6 +4,50 @@ This component provides the ability to read / write device data using Modbus TCP
 The basic usage of this component is based on the same concept as Modbus RTU protocol adapter.<br>
 In addition, planning to provide read / write capabilities for asset data based on simple asset modeling feature.<br>
 
+## Installation
+
+You can either use a prebuilt binary or build yourself.
+
+### Use prebuilt binary
+
+Download the following files from [releases](https://github.com/awslabs/aws-greengrass-labs-modbus-tcp-protocol-adapter/releases) page.
+
+- `ModbusTCP-<version>.jar`: Executable JAR file
+- `aws.greengrass.labs.ModbusTCP-<version>.yaml`: Recipe template
+
+Edit the following placeholders in recipe template.
+
+- `<MODBUS_TCP_HOST>`: Host name or IP address of Modbus TCP device.
+- `<MODBUS_TCP_PORT>`: Port number of Modbus TCP device.
+- `<MODBUS_TCP_UNIT_NAME>`: Unique name of Modbus TCP device. Used as the last part of IPC topic.
+- `<BUCKET_NAME>`: S3 bucket name, if uploaded ModbusTCP-1.0.0.jar to your S3 bucket.
+
+Follow the developer guide to [publish](https://docs.aws.amazon.com/greengrass/v2/developerguide/publish-components.html#publish-component-shell-commands) Modbus TCP protocol adapter or [deploy locally](https://docs.aws.amazon.com/greengrass/v2/developerguide/gg-cli-deployment.html#deployment-create).
+
+### How to build
+
+If you choose to build yourself, you can build by the following steps below.
+
+#### Prerequisite
+
+Install Java Development Kit 11 or above. We recommend that you use [Amazon Corretto 11](http://aws.amazon.com/corretto/) or [OpenJDK 11](https://openjdk.java.net/).
+
+#### Build
+
+Checkout this repository, `cd` to the repository root, and execute the following command.
+
+For Linux
+```bash
+./gradlew jar
+```
+
+For Windows
+```
+.\gradlew jar
+```
+
+If successful, a JAR file will be created in `build/libs`.
+
 ## Usage
 
 ### Configure the component
