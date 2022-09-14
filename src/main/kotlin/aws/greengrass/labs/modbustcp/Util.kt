@@ -4,6 +4,7 @@
 package aws.greengrass.labs.modbustcp
 
 import io.netty.buffer.ByteBuf
+import io.netty.util.ReferenceCounted
 import kotlin.math.min
 
 fun ByteBuf.readBitList(quantity: Int): List<Boolean> {
@@ -52,4 +53,12 @@ fun List<Boolean>.toBytes(): List<Byte> {
     }
 
     return result
+}
+
+inline fun <T : ReferenceCounted, R> T.use(block: (T) -> R): R {
+    try {
+        return block(this)
+    } finally {
+        release()
+    }
 }

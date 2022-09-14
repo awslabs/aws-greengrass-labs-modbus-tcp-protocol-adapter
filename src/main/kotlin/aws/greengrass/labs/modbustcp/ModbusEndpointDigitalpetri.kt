@@ -37,25 +37,33 @@ class ModbusEndpointDigitalpetri(configuration: ModbusConfiguration.Endpoint, pr
     override suspend fun readCoils(unitId: Int, address: Int, quantity: Int) = executeOrThrow {
         val request = ReadCoilsRequest(address, quantity)
         val response = client.sendRequest<ReadCoilsResponse>(request, unitId).await()
-        response.coilStatus.readBitList(quantity)
+        response.use {
+            response.coilStatus.readBitList(quantity)
+        }
     }
 
     override suspend fun readDiscreteInputs(unitId: Int, address: Int, quantity: Int) = executeOrThrow {
         val request = ReadDiscreteInputsRequest(address, quantity)
         val response = client.sendRequest<ReadDiscreteInputsResponse>(request, unitId).await()
-        response.inputStatus.readBitList(quantity)
+        response.use {
+            response.inputStatus.readBitList(quantity)
+        }
     }
 
     override suspend fun readHoldingRegisters(unitId: Int, address: Int, quantity: Int) = executeOrThrow {
         val request = ReadHoldingRegistersRequest(address, quantity)
         val response = client.sendRequest<ReadHoldingRegistersResponse>(request, unitId).await()
-        response.registers.readByteArray(quantity * 2).toList()
+        response.use {
+            response.registers.readByteArray(quantity * 2).toList()
+        }
     }
 
     override suspend fun readInputRegisters(unitId: Int, address: Int, quantity: Int) = executeOrThrow {
         val request = ReadInputRegistersRequest(address, quantity)
         val response = client.sendRequest<ReadInputRegistersResponse>(request, unitId).await()
-        response.registers.readByteArray(quantity * 2).toList()
+        response.use {
+            response.registers.readByteArray(quantity * 2).toList()
+        }
     }
 
     override suspend fun writeSingleCoil(unitId: Int, address: Int, value: Boolean) = executeOrThrow {
@@ -91,7 +99,9 @@ class ModbusEndpointDigitalpetri(configuration: ModbusConfiguration.Endpoint, pr
     override suspend fun readWriteMultipleRegisters(unitId: Int, readAddress: Int, readQuantity: Int, writeAddress: Int, values: List<Byte>) = executeOrThrow {
         val request = ReadWriteMultipleRegistersRequest(readAddress, readQuantity, writeAddress, values.size / 2, values.toByteArray())
         val response = client.sendRequest<ReadWriteMultipleRegistersResponse>(request, unitId).await()
-        response.registers.readByteArray(readQuantity * 2).toList()
+        response.use {
+            response.registers.readByteArray(readQuantity * 2).toList()
+        }
     }
 }
 
