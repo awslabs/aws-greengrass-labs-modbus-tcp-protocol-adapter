@@ -11,7 +11,6 @@ import com.digitalpetri.modbus.slave.ModbusTcpSlave
 import com.digitalpetri.modbus.slave.ModbusTcpSlaveConfig
 import com.digitalpetri.modbus.slave.ServiceRequestHandler
 import io.mockk.junit5.MockKExtension
-import io.netty.util.ReferenceCounted
 import kotlinx.coroutines.future.await
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.DisplayName
@@ -25,14 +24,6 @@ private const val TEST_HOST = "localhost"
 private const val TEST_PORT = 5020
 
 private const val TEST_UNIT_ID = 0
-
-private inline fun <T : ReferenceCounted, R> T.use(block: (T) -> R): R {
-    try {
-        return block(this)
-    } finally {
-        release()
-    }
-}
 
 @ExtendWith(MockKExtension::class)
 class EndpointTest {

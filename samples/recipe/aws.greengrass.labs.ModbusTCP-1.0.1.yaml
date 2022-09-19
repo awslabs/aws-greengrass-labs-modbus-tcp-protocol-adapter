@@ -1,7 +1,7 @@
 ---
 RecipeFormatVersion: "2020-01-25"
 ComponentName: "aws.greengrass.labs.ModbusTCP"
-ComponentVersion: "1.0.0"
+ComponentVersion: "1.0.1"
 ComponentType: "aws.greengrass.generic"
 ComponentDescription: "Modbus TCP protocol adapter"
 ComponentPublisher: "Amazon"
@@ -34,10 +34,10 @@ Manifests:
       os: /linux|darwin/
     Lifecycle:
       Run: |-
-        java -jar {artifacts:path}/ModbusTCP-1.0.0.jar
+        java -jar {artifacts:path}/ModbusTCP-1.0.1.jar
   - Name: Windows
     Platform:
       os: windows
     Lifecycle:
       Run: |-
-        java -jar {artifacts:path}\ModbusTCP-1.0.0.jar
+        java -jar {artifacts:path}\ModbusTCP-1.0.1.jar
