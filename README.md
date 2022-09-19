@@ -20,7 +20,7 @@ Edit the following placeholders in recipe template.
 - `<MODBUS_TCP_HOST>`: Host name or IP address of Modbus TCP device.
 - `<MODBUS_TCP_PORT>`: Port number of Modbus TCP device.
 - `<MODBUS_TCP_UNIT_NAME>`: Unique name of Modbus TCP device. Used as the last part of IPC topic.
-- `<BUCKET_NAME>`: S3 bucket name, if uploaded ModbusTCP-1.0.0.jar to your S3 bucket.
+- `<BUCKET_NAME>`: S3 bucket name, if uploaded ModbusTCP-<version>.jar to your S3 bucket.
 
 Follow the developer guide to [publish](https://docs.aws.amazon.com/greengrass/v2/developerguide/publish-components.html#publish-component-shell-commands) Modbus TCP protocol adapter or [deploy locally](https://docs.aws.amazon.com/greengrass/v2/developerguide/gg-cli-deployment.html#deployment-create).
 

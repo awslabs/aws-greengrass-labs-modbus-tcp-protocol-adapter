@@ -1,13 +1,13 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.31"
-    kotlin("plugin.serialization") version "1.5.31"
+    kotlin("jvm") version "1.7.10"
+    kotlin("plugin.serialization") version "1.7.10"
     application
 }
 
 group = "aws.greengrass.labs.modbustcp"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -16,12 +16,12 @@ repositories {
     }
 }
 
-val kotlinVersion = "1.5.31"
-val coroutinesVersion = "1.5.2"
-val serializationVersion = "1.3.1"
+val kotlinVersion = "1.7.10"
+val coroutinesVersion = "1.6.4"
+val serializationVersion = "1.4.0"
 val digitalpetriModbusVersion = "1.2.0"
-val ioTDeviceSdkVersion = "1.5.4"
-val greengrassNucleusVersion = "2.5.0-SNAPSHOT"
+val ioTDeviceSdkVersion = "1.10.3"
+val greengrassNucleusVersion = "2.7.0-SNAPSHOT"
 
 dependencies {
     implementation(kotlin("stdlib-jdk8", kotlinVersion))
@@ -35,8 +35,8 @@ dependencies {
     implementation("software.amazon.awssdk.iotdevicesdk", "aws-iot-device-sdk", ioTDeviceSdkVersion)
 
     testImplementation(kotlin("test", kotlinVersion))
-    testImplementation("io.mockk", "mockk", "1.12.1")
-    testImplementation("com.github.stefanbirkner", "system-lambda", "1.2.0")
+    testImplementation("io.mockk", "mockk", "1.12.8")
+    testImplementation("com.github.stefanbirkner", "system-lambda", "1.2.1")
     testImplementation("com.aws.greengrass", "nucleus", greengrassNucleusVersion)
     testImplementation("com.aws.greengrass", "nucleus", greengrassNucleusVersion, classifier="tests")
     testImplementation("com.digitalpetri.modbus", "modbus-slave-tcp", digitalpetriModbusVersion)
